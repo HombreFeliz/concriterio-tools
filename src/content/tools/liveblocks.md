@@ -4,7 +4,7 @@ tagline: Colaboración en tiempo real
 category: UI / componentes visuales
 categoryType: saas
 demoUrl: https://liveblocks.concriterio.tools
-repoUrl: https://github.com/polmarza/liveblocks-concriterio-tools
+repoUrl: https://github.com/HombreFeliz/liveblocks-concriterio-tools
 officialUrl: https://liveblocks.io
 publishedAt: 2026-03-15
 ---

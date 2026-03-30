@@ -1,0 +1,92 @@
+---
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-banner footer-banner--newsletter">
+      <p class="banner-text">Cada semana, herramientas como estas en tu bandeja de entrada.</p>
+      <a href="https://concriterio.blog" target="_blank" rel="noopener" class="banner-cta">
+        Suscríbete a Con Criterio
+      </a>
+    </div>
+
+    <div class="footer-banner footer-banner--consulting">
+      <p class="banner-text">¿Necesitas ayuda integrando alguna de estas herramientas en tu proyecto?</p>
+      <a href="https://cal.com/polmarza/toma-de-contacto" target="_blank" rel="noopener" class="banner-cta">
+        Agenda una sesión (90 EUR)
+      </a>
+    </div>
+
+    <p class="footer-credits">Construido por Pol Marzà con Astro y desplegado en Vercel.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 0 var(--padding-x) 48px;
+  }
+
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footer-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 28px 32px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+
+  .footer-banner--newsletter {
+    background: var(--surface);
+  }
+
+  .footer-banner--consulting {
+    background: transparent;
+  }
+
+  .banner-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .banner-cta {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--bg);
+    background: var(--primary);
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+
+  .banner-cta:hover {
+    background: var(--primary-hover);
+  }
+
+  .footer-credits {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 700px) {
+    .footer-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px 20px;
+    }
+  }
+</style>

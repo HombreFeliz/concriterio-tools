@@ -1,0 +1,85 @@
+---
+---
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <span class="hero-badge">Directorio de herramientas</span>
+    <h1 class="hero-title">Herramientas</h1>
+    <p class="hero-subtitle">
+      Demos interactivas de librerías y servicios para construir productos web.
+      Código abierto, sin humo: pruebas cada herramienta antes de integrarla.
+    </p>
+    <p class="hero-meta">Nuevas cada semana · Código público · Parte de Con Criterio</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 80px var(--padding-x) 48px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(118, 101, 255, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    background: var(--primary-muted);
+    border: 1px solid rgba(118, 101, 255, 0.2);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.5s ease-out both;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 20px;
+    animation: fadeInUp 0.5s ease-out 0.08s both;
+  }
+
+  .hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 400;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 16px;
+    line-height: 1.6;
+    animation: fadeInUp 0.5s ease-out 0.16s both;
+  }
+
+  .hero-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    animation: fadeInUp 0.5s ease-out 0.24s both;
+  }
+</style>

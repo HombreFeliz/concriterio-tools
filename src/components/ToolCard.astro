@@ -1,0 +1,253 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  category: string;
+  categoryType: string;
+  demoUrl: string;
+  repoUrl: string;
+  newsletterUrl?: string;
+  officialUrl: string;
+  publishedAt: Date;
+  image?: string;
+}
+
+const {
+  slug,
+  name,
+  tagline,
+  description,
+  category,
+  categoryType,
+  demoUrl,
+  repoUrl,
+  newsletterUrl,
+  officialUrl,
+  publishedAt,
+  image,
+} = Astro.props;
+
+const typeLabels: Record<string, string> = {
+  saas: 'SaaS',
+  library: 'Librería',
+  api: 'API',
+  'open-source': 'Open Source',
+};
+
+const formattedDate = new Date(publishedAt).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<article class="tool-card" data-type={categoryType} data-slug={slug}>
+  <div class="card-cover">
+    {image ? (
+      <img src={image} alt={name} class="cover-image" />
+    ) : (
+      <div class="cover-pattern" data-slug={slug}></div>
+    )}
+    <div class="cover-overlay"></div>
+  </div>
+
+  <div class="card-body">
+    <div class="card-meta-row">
+      <span class="type-badge">{typeLabels[categoryType] || categoryType}</span>
+      <span class="category-text">{category}</span>
+    </div>
+
+    <h2 class="card-title">{name}</h2>
+    <p class="card-tagline">{tagline}</p>
+    <p class="card-description">{description}</p>
+
+    <div class="card-links">
+      <a href={demoUrl} target="_blank" rel="noopener" class="card-link card-link--primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        Probar la demo
+      </a>
+      <a href={repoUrl} target="_blank" rel="noopener" class="card-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        Ver código
+      </a>
+      {newsletterUrl && (
+        <a href={newsletterUrl} target="_blank" rel="noopener" class="card-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Leer en la newsletter
+        </a>
+      )}
+      <a href={officialUrl} target="_blank" rel="noopener" class="card-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        Web oficial
+      </a>
+    </div>
+
+    <div class="card-footer">
+      <time datetime={publishedAt.toISOString().split('T')[0]}>{formattedDate}</time>
+    </div>
+  </div>
+</article>
+
+<style>
+  .tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .tool-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+
+  .card-cover {
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+  }
+
+  .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cover-pattern {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+  }
+
+  .cover-pattern[data-slug="resend"] {
+    background:
+      radial-gradient(circle at 30% 50%, rgba(118, 101, 255, 0.3) 0%, transparent 50%),
+      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(118, 101, 255, 0.05) 10px, rgba(118, 101, 255, 0.05) 20px);
+  }
+
+  .cover-pattern[data-slug="mapbox"] {
+    background:
+      radial-gradient(circle at 70% 30%, rgba(118, 101, 255, 0.25) 0%, transparent 60%),
+      repeating-linear-gradient(135deg, transparent, transparent 8px, rgba(118, 101, 255, 0.06) 8px, rgba(118, 101, 255, 0.06) 16px);
+  }
+
+  .cover-pattern[data-slug="liveblocks"] {
+    background:
+      radial-gradient(circle at 50% 70%, rgba(118, 101, 255, 0.3) 0%, transparent 50%),
+      repeating-linear-gradient(90deg, transparent, transparent 12px, rgba(118, 101, 255, 0.04) 12px, rgba(118, 101, 255, 0.04) 24px);
+  }
+
+  .cover-pattern[data-slug="uploadthing"] {
+    background:
+      radial-gradient(circle at 20% 40%, rgba(118, 101, 255, 0.2) 0%, transparent 55%),
+      repeating-linear-gradient(60deg, transparent, transparent 14px, rgba(118, 101, 255, 0.07) 14px, rgba(118, 101, 255, 0.07) 28px);
+  }
+
+  .cover-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--surface));
+  }
+
+  .card-body {
+    padding: 16px 20px 20px;
+  }
+
+  .card-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .type-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--primary);
+    background: var(--primary-muted);
+    border: 1px solid rgba(118, 101, 255, 0.2);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+  }
+
+  .category-text {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .card-tagline {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+
+  .card-description {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .card-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .card-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 9px 14px;
+    transition: all 0.2s;
+  }
+
+  .card-link:hover {
+    color: var(--text);
+    border-color: var(--border-hover);
+    background: var(--surface-hover);
+  }
+
+  .card-link--primary {
+    color: var(--primary);
+    border-color: rgba(118, 101, 255, 0.3);
+    background: var(--primary-muted);
+  }
+
+  .card-link--primary:hover {
+    color: var(--primary-hover);
+    background: rgba(118, 101, 255, 0.18);
+  }
+
+  .card-footer {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+</style>

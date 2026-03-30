@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Filters from '../components/Filters.astro';
+import ToolsGrid from '../components/ToolsGrid.astro';
+import Footer from '../components/Footer.astro';
+
+const tools = await getCollection('tools');
+tools.sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const categoryTypes = [...new Set(tools.map((t) => t.data.categoryType))];
+---
+
+<Base
+  title="Con Criterio Tools — Directorio de herramientas para builders"
+  description="Demos interactivas de librerías y servicios para construir productos web. Código abierto, sin humo."
+>
+  <Header />
+  <Hero />
+  <Filters categoryTypes={categoryTypes} />
+  <ToolsGrid tools={tools} />
+  <Footer />
+</Base>

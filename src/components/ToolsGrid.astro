@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ToolCard from './ToolCard.astro';
+
+interface Props {
+  tools: CollectionEntry<'tools'>[];
+}
+
+const { tools } = Astro.props;
+---
+
+<section class="tools-grid-section">
+  <div class="tools-grid stagger">
+    {tools.map((tool) => (
+      <ToolCard
+        slug={tool.id}
+        name={tool.data.name}
+        tagline={tool.data.tagline}
+        description={tool.body ?? ''}
+        category={tool.data.category}
+        categoryType={tool.data.categoryType}
+        demoUrl={tool.data.demoUrl}
+        repoUrl={tool.data.repoUrl}
+        newsletterUrl={tool.data.newsletterUrl}
+        officialUrl={tool.data.officialUrl}
+        publishedAt={tool.data.publishedAt}
+        image={tool.data.image}
+      />
+    ))}
+  </div>
+  <p class="tools-counter">{tools.length} herramienta{tools.length !== 1 ? 's' : ''}</p>
+</section>
+
+<style>
+  .tools-grid-section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--padding-x) 48px;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .tools-grid.stagger > :global(*) {
+    animation: fadeInUp 0.45s ease-out both;
+  }
+
+  .tools-grid.stagger > :global(*:nth-child(1)) { animation-delay: 0s; }
+  .tools-grid.stagger > :global(*:nth-child(2)) { animation-delay: 0.05s; }
+  .tools-grid.stagger > :global(*:nth-child(3)) { animation-delay: 0.1s; }
+  .tools-grid.stagger > :global(*:nth-child(4)) { animation-delay: 0.15s; }
+  .tools-grid.stagger > :global(*:nth-child(5)) { animation-delay: 0.2s; }
+  .tools-grid.stagger > :global(*:nth-child(6)) { animation-delay: 0.25s; }
+  .tools-grid.stagger > :global(*:nth-child(7)) { animation-delay: 0.3s; }
+  .tools-grid.stagger > :global(*:nth-child(8)) { animation-delay: 0.35s; }
+
+  .tools-counter {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 700px) {
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

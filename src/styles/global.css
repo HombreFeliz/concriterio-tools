@@ -57,6 +57,72 @@ img {
   display: block;
 }
 
+body.text-large {
+  font-size: 1.15rem;
+}
+
+body.text-large .card-title {
+  font-size: 1.6rem;
+}
+
+body.text-large .card-tagline {
+  font-size: 1.1rem;
+}
+
+body.text-large .card-description {
+  font-size: 1.05rem;
+}
+
+body.text-large .card-link {
+  font-size: 1rem;
+  padding: 11px 16px;
+}
+
+body.text-large .type-badge {
+  font-size: 0.78rem;
+}
+
+body.text-large .category-text {
+  font-size: 0.85rem;
+}
+
+body.text-large .card-footer {
+  font-size: 0.8rem;
+}
+
+body.text-large .hero-title {
+  font-size: clamp(2.8rem, 7vw, 4.5rem);
+}
+
+body.text-large .hero-subtitle {
+  font-size: clamp(1.1rem, 2.2vw, 1.25rem);
+}
+
+body.text-large .hero-meta {
+  font-size: 0.85rem;
+}
+
+body.text-large .banner-text {
+  font-size: 1.1rem;
+}
+
+body.text-large .banner-cta {
+  font-size: 0.95rem;
+}
+
+body.text-large .filter-pill {
+  font-size: 0.85rem;
+  padding: 9px 20px;
+}
+
+body.text-large .nav a {
+  font-size: 0.95rem;
+}
+
+body.text-large .tools-counter {
+  font-size: 0.85rem;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

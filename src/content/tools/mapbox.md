@@ -4,7 +4,7 @@ tagline: Mapas interactivos con WebGL
 category: Mapas y geolocalización
 categoryType: library
 demoUrl: https://mapbox.concriterio.tools
-repoUrl: https://github.com/polmarza/mapbox-concriterio-tools
+repoUrl: https://github.com/HombreFeliz/mapbox-concriterio-tools
 officialUrl: https://mapbox.com
 publishedAt: 2026-03-22
 ---

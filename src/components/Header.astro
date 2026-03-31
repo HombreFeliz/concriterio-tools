@@ -7,7 +7,14 @@
       <span class="logo-name">con criterio</span>
       <span class="logo-badge">tools</span>
     </a>
-    <nav class="nav">
+
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <nav class="nav" id="nav">
       <a href="https://concriterio.blog" target="_blank" rel="noopener">Newsletter</a>
       <a href="https://concriterio.dev" target="_blank" rel="noopener">Recursos</a>
       <a href="https://github.com/HombreFeliz" target="_blank" rel="noopener">GitHub</a>
@@ -29,6 +36,22 @@
     const isLarge = document.body.classList.toggle('text-large');
     toggle.classList.toggle('active', isLarge);
     localStorage.setItem('text-large', String(isLarge));
+  });
+
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  burger?.addEventListener('click', () => {
+    const isOpen = nav?.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  nav?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      burger?.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+    });
   });
 </script>
 
@@ -77,8 +100,41 @@
     text-transform: uppercase;
   }
 
+  .burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 110;
+  }
+
+  .burger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .burger.open .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .burger.open .burger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.open .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
   .nav {
     display: flex;
+    align-items: center;
     gap: 24px;
   }
 
@@ -120,12 +176,37 @@
   }
 
   @media (max-width: 700px) {
+    .burger {
+      display: flex;
+    }
+
     .nav {
-      gap: 16px;
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      z-index: 105;
+    }
+
+    .nav.open {
+      display: flex;
     }
 
     .nav a {
-      font-size: 0.8rem;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+
+    .text-size-toggle {
+      font-size: 1rem;
+      padding: 8px 16px;
     }
   }
 </style>
